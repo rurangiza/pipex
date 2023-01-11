@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 14:01:48 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/09 18:25:30 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/11 12:01:00 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,11 @@ char	*ft_strdup(const char *str);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
+
 char	**ft_split(char const *str, char ch);
 char	**ft_split_fd(int fd, char seperator);
+char	**ft_split_sep(char const *str, char ch, char seperator);
+
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
@@ -116,5 +119,8 @@ int		ft_abs(int x);
 int		success_msg(int return_code, char *message, ...);
 int		error_msg(int return_code, char *message, ...);
 int		info_msg(int return_code, char *message, ...);
+
+/* FREE */
+void	ft_free_matrix(char **matrix);
 
 #endif

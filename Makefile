@@ -6,7 +6,7 @@
 #    By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/10 15:24:07 by arurangi          #+#    #+#              #
-#    Updated: 2023/01/10 15:32:47 by arurangi         ###   ########.fr        #
+#    Updated: 2023/01/11 11:52:53 by arurangi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,5 +53,5 @@ re:			fclean all
 .PHONY:		all clean fclean re
 
 
-run:
-			@./pipex
+run:	all
+				@./pipex file1 pwd grep file2

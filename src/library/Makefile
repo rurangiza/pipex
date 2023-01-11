@@ -6,7 +6,7 @@
 #    By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 13:53:56 by arurangi          #+#    #+#              #
-#    Updated: 2023/01/09 08:59:42 by arurangi         ###   ########.fr        #
+#    Updated: 2023/01/11 11:59:14 by arurangi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,13 +24,14 @@ SRCS	=	ft_atoi.c ft_bzero.c ft_calloc.c \
 			ft_substr.c ft_split.c ft_strjoin.c ft_strtrim.c \
 			ft_putchar.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
 			ft_putnbr.c ft_putnbr_fd.c ft_striteri.c ft_strmapi.c ft_itoa.c \
-			ft_split_fd.c ft_putstr.c \
+			ft_split_fd.c ft_split_sep.c ft_putstr.c \
 			ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
 			ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c \
 			ft_lstclear.c ft_lstiter.c ft_lstmap.c \
 			success_msg.c error_msg.c info_msg.c \
 			get_next_line.c get_next_line_utils.c \
 			ft_swap.c \
+			ft_free_matrix.c \
 			
 #SRCSB				
 
