@@ -6,7 +6,7 @@
 /*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:41:01 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/11 19:55:34 by Arsene           ###   ########.fr       */
+/*   Updated: 2023/01/11 20:33:09 by Arsene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,14 @@ int	main(int arg_count, char **argv_list, char **envp)
 	cmd2 = get_cmd_path(envp, argv_list[3]);
 	if (!cmd1 || !cmd2)
 		return (free_cmd_paths(cmd1, cmd2));
-	success_msg(0, "Valid commands");
 	// Create child process
 	pid = fork();
 	if (pid == -1)
-	{
-		free_cmd_paths(cmd1, cmd2);
-		return (EXIT_FAILURE);
-	}
+		return (free_cmd_paths(cmd1, cmd2));
 	if (pid == 0)
-		child_process();
+		child_process(pid);
 	else
-		parent_process();
+		parent_process(pid);
 	// Exit program
-	return (EXIT_FAILURE);
+	//return (EXIT_FAILURE);
 }

@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memory_mgmt.c                                      :+:      :+:    :+:   */
+/*   processes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 14:42:14 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/11 20:24:10 by Arsene           ###   ########.fr       */
+/*   Created: 2023/01/11 20:01:10 by Arsene            #+#    #+#             */
+/*   Updated: 2023/01/11 20:39:15 by Arsene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-int	free_cmd_paths(char *s1, char *s2)
+void    child_process(pid_t pid)
 {
-	if (s1 != NULL)
-		free(s1);
-	if (s2 != NULL)
-		free(s2);
-	return (EXIT_FAILURE);
+    success_msg(0, "I'm child process, ID %d", pid);
+    exit(0);
+}
+
+void    parent_process(pid_t pid)
+{
+    int status;
+
+    info_msg(0, "Parent: I'm the parent. PID received from fork = %d", pid);
+    info_msg(0, "Parent: Waiting for my child with PID [%d]", pid);
+    waitpid(pid, &status, 0);
+    info_msg(0, "Parent: My child exited with status %d", pid);
 }

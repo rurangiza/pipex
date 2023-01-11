@@ -6,7 +6,7 @@
 /*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:41:31 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/11 19:51:19 by Arsene           ###   ########.fr       */
+/*   Updated: 2023/01/11 20:15:29 by Arsene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_cmd_path(char **envp, char *cmd)
 	{
 		if (ft_strnstr(envp[index], "PATH", 4))
 		{
-			paths_list = ft_split_sep(envp[index] + 26, ':', '/');
+			paths_list = ft_split_sep(envp[index] + 4, ':', '/');
 			if (paths_list == NULL)
 				return (NULL);
 			return (validated_path(paths_list, cmd));

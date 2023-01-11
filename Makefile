@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+         #
+#    By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/10 15:24:07 by arurangi          #+#    #+#              #
-#    Updated: 2023/01/11 14:44:35 by arurangi         ###   ########.fr        #
+#    Updated: 2023/01/11 20:11:48 by Arsene           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ UTILS_DIR	=	./src/utils/
 # SOURCE FILES
 SOURCE_FILES	=	${SRC_DIR}main.c \
 					${SRC_DIR}parsing.c \
+					${SRC_DIR}processes.c \
 					${SRC_DIR}memory_mgmt.c \
 
 # VARIABLES
@@ -55,4 +56,4 @@ re:			fclean all
 .PHONY:		all clean fclean re
 
 run:	all
-				@./pipex file1 ls grep file2
+			@./pipex file1 ls grep file2
