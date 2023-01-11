@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:41:31 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/11 14:48:07 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/11 19:51:19 by Arsene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-char	*get_path(char **envp, char *cmd)
+char	*get_cmd_path(char **envp, char *cmd)
 {
 	char	**paths_list;
 	int		index;
