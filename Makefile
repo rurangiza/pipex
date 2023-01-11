@@ -6,7 +6,7 @@
 #    By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/10 15:24:07 by arurangi          #+#    #+#              #
-#    Updated: 2023/01/11 11:52:53 by arurangi         ###   ########.fr        #
+#    Updated: 2023/01/11 14:44:35 by arurangi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ UTILS_DIR	=	./src/utils/
 
 # SOURCE FILES
 SOURCE_FILES	=	${SRC_DIR}main.c \
+					${SRC_DIR}parsing.c \
+					${SRC_DIR}memory_mgmt.c \
 
 # VARIABLES
 COMPILER	= 	gcc
@@ -52,6 +54,5 @@ re:			fclean all
 
 .PHONY:		all clean fclean re
 
-
 run:	all
-				@./pipex file1 pwd grep file2
+				@./pipex file1 ls grep file2
