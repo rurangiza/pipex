@@ -6,36 +6,45 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:41:01 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/12 11:33:39 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:55:16 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-int	main(int arg_count, char **argv_list, char **envp)
+typedef struct s_data {
+	pid_t	pid;
+	int		fd[2];
+	char	*path;
+	char	*args;
+	
+} t_data;
+
+
+int	main(int arg_count, char **arg_list, char **envp)
 {
 	pid_t	pid;
 	int		fd[2]; // fd[0] read from, fd[1] write to
 	char	*cmd1;
 	char	*cmd2;
+	//char	*args[] = {"file", "grep", NULL};
+	
 
 	// Check number of arguments
 	if (arg_count != 5)
 		return (error_msg(1, "Usage: ./pipex file1 cmd1 cmd2 file2"));
 
 	// Save command paths
-	cmd1 = get_cmd_path(envp, argv_list[2]);
-	cmd2 = get_cmd_path(envp, argv_list[3]);
+	cmd1 = get_cmd_path(envp, arg_list[2]);
+	cmd2 = get_cmd_path(envp, arg_list[3]);
 	if (!cmd1 || !cmd2)
-		return (free_cmd_paths(cmd1, cmd2));
+		return (free_cmd_paths(cmd1, cmd1));
 
-	// Data
-	int data[10];
-	printf("Add number: ");
-	for (int i = 0; i < 10; i++)
-	{
-		scanf("%d", &data[i]);
-	}
+
+	
+	printf()
+	//execve(cmd2, args, envp);
+
 
 	// Creating the pipeline
 	if (pipe(fd) == -1)
@@ -52,41 +61,16 @@ int	main(int arg_count, char **argv_list, char **envp)
 
 	// Exit program
 	return (EXIT_SUCCESS);
+	(void)pid;
+	(void)fd;
 }
+
+
 
 /*
 int main(void)
 {
-	pid_t	pid;
-	int		fd[2];
-	// fd[0] - read from
-	// fd[1] - write to
-
-	// Connect two programs together
-	if (pipe(fd) == -1)
-		return (error_msg(1, "error while opening the pipe"));
-	
-	// Create child process
-	pid = fork();
-	if (pid == 0) // We're in the CHILD process
-	{
-		close(fd[0]);
-		int x;
-		printf("Input a number: ");
-		scanf("%d", &x);
-		write(fd[1], &x, sizeof(int)); // Writing to the pipe
-		close(fd[1]);
-	}
-	else // We're in the PARENT process
-	{
-		close(fd[1]);
-		int y;
-		read(fd[0], &y, sizeof(int)); // Reading from the pipe
-		close(fd[0]);
-		y *= 3;
-		printf("Got from child process %d\n", y);
-	}
-		
+	_execl("");
 	return (0);
 }
 */
