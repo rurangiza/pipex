@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:28:04 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/11 20:04:59 by Arsene           ###   ########.fr       */
+/*   Updated: 2023/01/12 11:14:21 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <sys/wait.h>
 
 /* ~~~~~~~~~~ PROCESS ~~~~~~~~~ */
-void    child_process(pid_t pid);
-void    parent_process(pid_t pid);
+void    child_routine(pid_t pid, int *fd, int *data);
+void    parent_routine(pid_t pid, int *fd, int *data);
 
 /* ~~~~~~~~~ PARSING ~~~~~~~~~ */
 char	*get_cmd_path(char **envp, char *cmd);
