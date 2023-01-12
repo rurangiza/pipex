@@ -6,46 +6,40 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 20:01:10 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/12 11:23:24 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/12 17:08:23 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void    child_routine(pid_t pid, int *fd, int *data)
+void    child_routine(int *pipe_fd)
 {
-    close(fd[0]);
+    char *args[] = {"cat", "infile", NULL};
 
-    
-    int sum = 0;
-    for (int i = 0; i < 5; i++)
-        sum += data[i];
-    write(fd[1], &sum, sizeof(int)); // Writing to the pipe
-    close(fd[1]);
-    success_msg(0, "child_sum : %d", sum);
-    // others
-    (void)pid;
-    exit(0);
+    close(pipe_fd[READ_END]);
+    // read content of a file
+    dup2(pipe_fd[WRITE_END], 1);
+    // execute cat command on the received content
+    execve("/bin/cat", args, NULL);
 }
 
-void    parent_routine(pid_t pid, int *fd, int *data)
+void    parent_routine(pid_t pid, int *pipe_fd)
 {
-    int status;
-
-    close(fd[1]);
-    int sum_child;
-    int sum_parent;
-
-    sum_parent = 0;
-    // Read input and save it into variable {y}
-    read(fd[0], &sum_child, sizeof(int)); 
-    close(fd[0]);
-    for (int i = 5; i < 10; i++)
-        sum_parent += data[i];
-    // Modify my input
+    int     status;
+    char    *args[] = {"grep", "wolves", NULL};
+    int     outfile;
     
+    int pid2 = fork();
+    if (pid2 == 0)
+    {
+        close(pipe_fd[WRITE_END]);
+        dup2(pipe_fd[READ_END], 0); // redirect stdin to the read end of the pipe
+        outfile = open("outfile", O_WRONLY | O_CREAT, 0777); // open my output file
+        dup2(outfile, 1); // redirect strout to my output file
+        execve("/usr/bin/grep", args, NULL); // Execute the command
+    }
     // Print result
-    success_msg(0, "parent_sum: %d", sum_parent);
-    printf("sum = %d\n", sum_child + sum_parent);
+    close(pipe_fd[WRITE_END]);
     waitpid(pid, &status, 0);
+    waitpid(pid2, &status, 0);
 }

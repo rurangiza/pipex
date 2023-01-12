@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:28:04 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/12 11:14:21 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:37:36 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,19 @@
 # include <unistd.h>
 # include <sys/wait.h>
 
+# define READ_END 0
+# define WRITE_END 1
+
+// typedef struct s_data {
+// 	pid_t	pid;
+// 	int		fd[2];
+// 	char	*path;
+// 	char	*args;
+// } t_data;
+
 /* ~~~~~~~~~~ PROCESS ~~~~~~~~~ */
-void    child_routine(pid_t pid, int *fd, int *data);
-void    parent_routine(pid_t pid, int *fd, int *data);
+void    child_routine(int *pipe_fd);
+void    parent_routine(pid_t pid, int *pipe_fd);
 
 /* ~~~~~~~~~ PARSING ~~~~~~~~~ */
 char	*get_cmd_path(char **envp, char *cmd);
