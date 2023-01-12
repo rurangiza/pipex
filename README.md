@@ -4,6 +4,8 @@
 
 <img src="documentation/Unix_pipeline_v1.gif" width="100%" alt="animation of how pipeline work in UNIX"/>
 
+> Animation by [Computerphile](https://www.youtube.com/watch?v=bKzonnwoR2I)
+
 Pipe is a mechanism for connecting the output of one program to the input of another program
 
 ### Benefits of having pipes
