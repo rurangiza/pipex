@@ -2,7 +2,7 @@
 ### Recreating the UNIX "pipe" (pipeline) program
 
 
-<img src="Unix_pipeline_v1.gif" width="100%" alt="Animation of a sorting algorithm"/>
+<img src="documentation/Unix_pipeline_v1.gif" width="100%" alt="animation of how pipeline work in UNIX"/>
 
 Pipe is a mechanism for connecting the output of one program to the input of another program
 
