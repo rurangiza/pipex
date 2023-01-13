@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:28:04 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/12 16:37:36 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:10:27 by Arsene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,28 @@
 # define READ_END 0
 # define WRITE_END 1
 
-// typedef struct s_data {
-// 	pid_t	pid;
-// 	int		fd[2];
-// 	char	*path;
-// 	char	*args;
-// } t_data;
+typedef struct s_cmd {
+	char	*path;
+	char	**args;
+} t_cmd;
+
+typedef struct s_data {
+    pid_t   pid;
+    int     pipe_ends[2];
+    t_cmd   cmd_1;
+    t_cmd   cmd_2;
+} t_data;
 
 /* ~~~~~~~~~~ PROCESS ~~~~~~~~~ */
-void    child_routine(int *pipe_fd);
-void    parent_routine(pid_t pid, int *pipe_fd);
+void    child_routine(void);
+void    parent_routine(void);
 
 /* ~~~~~~~~~ PARSING ~~~~~~~~~ */
-char	*get_cmd_path(char **envp, char *cmd);
-char	*validated_path(char **paths_list, char *cmd);
+char	*init_cmd(char **envp, char *args, t_cmd *cmd);
+char	*validated_path(char **paths_list, char *args);
+int     ft_count_words(char *str);
 
 /* ~~~~~~~~~ MEMORY MGMT ~~~~~~~~~ */
-int		free_cmd_paths(char *s1, char *s2);
+int		free_prog(t_data *prog);
 
 #endif

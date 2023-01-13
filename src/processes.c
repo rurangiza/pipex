@@ -3,43 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   processes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 20:01:10 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/12 17:08:23 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:42:23 by Arsene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void    child_routine(int *pipe_fd)
+void    child_routine(void)
 {
-    char *args[] = {"cat", "infile", NULL};
+    char *args[] = {"cat", NULL};
 
-    close(pipe_fd[READ_END]);
-    // read content of a file
-    dup2(pipe_fd[WRITE_END], 1);
-    // execute cat command on the received content
+    // Open infile for reading
+    int file_fd = open("infile", O_RDONLY);
+    // Redirect its output to stdin
+    dup2(file_fd, 0);
+    // execute cat command on stdin
     execve("/bin/cat", args, NULL);
 }
 
-void    parent_routine(pid_t pid, int *pipe_fd)
+void    parent_routine(void)
 {
-    int     status;
-    char    *args[] = {"grep", "wolves", NULL};
-    int     outfile;
+    //char    *args[] = {"grep", "illness", NULL};
     
-    int pid2 = fork();
-    if (pid2 == 0)
-    {
-        close(pipe_fd[WRITE_END]);
-        dup2(pipe_fd[READ_END], 0); // redirect stdin to the read end of the pipe
-        outfile = open("outfile", O_WRONLY | O_CREAT, 0777); // open my output file
-        dup2(outfile, 1); // redirect strout to my output file
-        execve("/usr/bin/grep", args, NULL); // Execute the command
-    }
-    // Print result
-    close(pipe_fd[WRITE_END]);
-    waitpid(pid, &status, 0);
-    waitpid(pid2, &status, 0);
 }
