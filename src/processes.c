@@ -6,7 +6,7 @@
 /*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 20:01:10 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/13 15:59:48 by Arsene           ###   ########.fr       */
+/*   Updated: 2023/01/13 16:12:28 by Arsene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ void    child_process(t_data *data, char *infile)
     int infile_fd;
     
     close(data->pipe_ends[READ_END]);
-    infile_fd = open(infile, O_RDONLY | O_CREAT, 0777); // open infile for reading
+    infile_fd = open(infile, O_RDONLY, 0777); // open infile for reading
     if (infile_fd == -1)
         error_msg(1, "couldn't open <file1>");
-    dup2(infile_fd, STDIN_FILENO); // replace STDIN with infile
+    if (dup2(infile_fd, STDIN_FILENO) < 0) // replace STDIN with infile
+        return ;
     close(infile_fd);
     dup2(data->pipe_ends[WRITE_END], STDOUT_FILENO); // replace STDOUT with WRITE_END of pipe
     execve(data->cmd_1.path, data->cmd_1.args, NULL); // execute cmd1 on stdin
