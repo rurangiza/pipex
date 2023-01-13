@@ -6,7 +6,7 @@
 /*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:41:01 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/13 13:52:51 by Arsene           ###   ########.fr       */
+/*   Updated: 2023/01/13 15:43:48 by Arsene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,23 @@
 /*
  * WHere I try stuff
 */ 
+
+/*
+
+Output of ping goes to ping result
+
+dup2(file_fd, STDOUT);
+
+
+
+
+*/
+
+// Make sur the commands are valid then save relevent info
+int	index = 2;
+while (index < arg_count - 1)
+	init_cmd(envp, arg_list[index], &data.cmd[index - 2]);
+
 
 int	main(int arg_count, char **arg_list, char **envp)
 {

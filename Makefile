@@ -6,7 +6,7 @@
 #    By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/10 15:24:07 by arurangi          #+#    #+#              #
-#    Updated: 2023/01/13 13:53:09 by Arsene           ###   ########.fr        #
+#    Updated: 2023/01/13 15:17:29 by Arsene           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,8 +55,8 @@ re:			fclean all
 
 .PHONY:		all clean fclean re
 
-run:	all
-			@./pipex file1 "ls" "grep file" file2
+# run:	all
+# @./pipex file1 "cat" "grep i" file2
 
 #		/usr/local/bin/ls
 #		/usr/bin/grep

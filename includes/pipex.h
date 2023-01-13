@@ -6,7 +6,7 @@
 /*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:28:04 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/13 13:39:20 by Arsene           ###   ########.fr       */
+/*   Updated: 2023/01/13 15:51:16 by Arsene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,15 @@ typedef struct s_data {
 } t_data;
 
 /* ~~~~~~~~~~ PROCESS ~~~~~~~~~ */
-void    child_routine(void);
-void    parent_routine(void);
+void    child_process(t_data *data, char *infile);
+void    parent_process(t_data *data, char *outfile);
 
 /* ~~~~~~~~~ PARSING ~~~~~~~~~ */
-char	*init_cmd(char **envp, char *args, t_cmd *cmd);
-char	*validated_path(char **paths_list, char *args);
+char    *init_cmd(char **envp, char *args, t_cmd *cmd);
+
+char    *validated_path(char **paths_list, char *args);
 int     ft_count_words(char *str);
+char    *ft_cutword(char *str);
 
 /* ~~~~~~~~~ MEMORY MGMT ~~~~~~~~~ */
 int		free_prog(t_data *prog);
