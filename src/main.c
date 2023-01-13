@@ -6,7 +6,7 @@
 /*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:21:06 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/13 16:06:41 by Arsene           ###   ########.fr       */
+/*   Updated: 2023/01/13 18:29:49 by Arsene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,11 @@ int	main(int arg_count, char **arg_list, char **envp)
 
 	// Create a pipe
 	if (pipe(data.pipe_ends) == -1)
-		return (error_msg(1, "an error ocured while opening the pipe"));
-	
-	// Create and handle processes
-	data.pid = fork();
-	if (data.pid == -1)
-		return (free_prog(&data));
-	else if (data.pid == 0)
-		child_process(&data, arg_list[1]);
-	else
-		parent_process(&data, arg_list[4]);
-
+	{
+		perror("pipe");
+		exit (EXIT_FAILURE);
+	}
+	ft_pipex(&data, arg_list);
 	// Exit program
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:41:31 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/13 15:46:19 by Arsene           ###   ########.fr       */
+/*   Updated: 2023/01/13 18:18:10 by Arsene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ char	*init_cmd(char **envp, char *args, t_cmd *cmd)
 			if (paths_list == NULL)
 				return (NULL);
 			cmd->path = validated_path(paths_list, args);
-			
 		}
 		index++;
 	}
@@ -55,6 +54,7 @@ char	*validated_path(char **paths_list, char *args)
 		index++;
 	}
 	ft_free_matrix(paths_list);
+	perror(cmd);
 	free(cmd);
 	return (NULL);
 }
