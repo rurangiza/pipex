@@ -6,7 +6,7 @@
 /*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:21:06 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/13 13:55:25 by Arsene           ###   ########.fr       */
+/*   Updated: 2023/01/13 13:57:26 by Arsene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int arg_count, char **arg_list, char **envp)
 	{
 		close(data.pipe_ends[READ_END]);
 		
-		int infile_fd = open(arg_list[1], O_RDONLY); // open infile for reading
+		int infile_fd = open(arg_list[1], O_RDONLY | O_CREAT); // open infile for reading
 		dup2(infile_fd, STDIN_FILENO); // replace STDIN with infile
 		dup2(data.pipe_ends[WRITE_END], STDOUT_FILENO); // replace STDOUT with WRITE_END of pipe
 		execve(data.cmd_1.path, data.cmd_1.args, NULL); // execute cmd1 on stdin
