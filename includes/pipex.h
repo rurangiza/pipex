@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:28:04 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/13 17:47:24 by Arsene           ###   ########.fr       */
+/*   Updated: 2023/01/14 11:39:53 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 
-# define READ_END 0
-# define WRITE_END 1
+# define P_READ 0
+# define P_WRITE 1
+# define FIRST_CHILD 0
+# define SECOND_CHILD 1
 
 typedef struct s_cmd {
 	char	*path;
@@ -30,15 +32,22 @@ typedef struct s_cmd {
 typedef struct s_data {
     pid_t   pid[2];
     int     pipe_ends[2];
-    t_cmd   cmd_1;
-    t_cmd   cmd_2;
+	int		arg_count;
+	char	**arg_list;
+	char	**envp;
+    // t_cmd   cmd_1;
+    // t_cmd   cmd_2;
 } t_data;
 
-void    ft_pipex(t_data *data, char **arg_list);
+void    ft_pipex(t_data *data);
+
+/* ~~~~~~ INITTIALIZTION ~~~~~~~ */
+void	load_data(t_data *data, int arg_count, char **arg_list, char **envp);
 
 /* ~~~~~~~~~~ PROCESS ~~~~~~~~~ */
-void    first_child(t_data *data, char *infile);
-void    second_child(t_data *data, char *outfile);
+void    first_child(t_data *data, int *pipe_ends);
+void    second_child(t_data *data, int *pipe_ends);
+void	parent_process(int *pipe_ends, pid_t *pid);
 
 /* ~~~~~~~~~ PARSING ~~~~~~~~~ */
 char    *init_cmd(char **envp, char *args, t_cmd *cmd);
