@@ -6,41 +6,18 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 20:01:10 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/14 11:49:35 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/14 12:10:18 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-// Executes the commands and pipes them together
-void	ft_pipex(t_data *data)
-{
-    pid_t   pid[2];
-    int     pipe_ends[2];
-
-	if (pipe(pipe_ends) == -1)
-	{
-		perror("pipe");
-		exit(EXIT_FAILURE);
-	}
-	pid[0] = fork();
-	if (data->pid[0] == -1)
-    {
-        perror("fork");
-		exit(EXIT_FAILURE);
-    }
-	else if (pid[0] == 0)
-		first_child(data, pipe_ends);
-    pid[1] = fork();
-	if (pid[1] == -1)
-    {
-        perror("fork");
-        exit(EXIT_FAILURE);
-    }
-    else if (pid[1] == 0)
-        second_child(data, pipe_ends);
-    parent_process(pid, pipe_ends);
-}
+/*
+ * What parameters changes between the two child processes?
+ * - INPUT
+ * - OUTPUT
+ * - COMMANDS INFO
+*/
 
 void    first_child(t_data *data, int *pipe_ends)
 {
