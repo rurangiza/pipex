@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:28:04 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/14 11:39:53 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/14 13:55:07 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void	parent_process(int *pipe_ends, pid_t *pid);
 char    *init_cmd(char **envp, char *args, t_cmd *cmd);
 
 char    *validated_path(char **paths_list, char *args);
-int     ft_count_words(char *str);
-char    *ft_cutword(char *str);
+int     count_words(char *str);
+char    *cut_first_word(char *str);
 
-/* ~~~~~~~~~ MEMORY MGMT ~~~~~~~~~ */
-int		free_prog(t_data *prog);
+/* ~~~~~~~~ ERROR HANDLING ~~~~~~ */
+void	exit_msg(void);
 
 #endif

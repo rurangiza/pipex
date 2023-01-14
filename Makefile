@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+         #
+#    By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/10 15:24:07 by arurangi          #+#    #+#              #
-#    Updated: 2023/01/13 15:17:29 by Arsene           ###   ########.fr        #
+#    Updated: 2023/01/14 13:55:02 by arurangi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ UTILS_DIR	=	./src/utils/
 SOURCE_FILES	=	${SRC_DIR}main.c \
 					${SRC_DIR}parsing.c \
 					${SRC_DIR}processes.c \
-					${SRC_DIR}memory_mgmt.c \
+					${SRC_DIR}init.c \
 
 # VARIABLES
 COMPILER	= 	gcc

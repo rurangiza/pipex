@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 20:01:10 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/14 12:10:18 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/14 14:05:51 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ void    first_child(t_data *data, int *pipe_ends)
     t_cmd   cmd;
 
     close(pipe_ends[P_READ]);
-    infile_fd = open(data->arg_list[1], O_RDONLY, 0777);
+    infile_fd = open(data->arg_list[1], O_RDONLY);
     if (infile_fd == -1)
-        error_msg(1, "couldn't open <file1>");
+        exit_msg();
     if (dup2(infile_fd, STDIN_FILENO) < 0)
-        return ;
+        exit(EXIT_FAILURE);
     close(infile_fd);
     dup2(pipe_ends[P_WRITE], STDOUT_FILENO);
     init_cmd(data->envp, data->arg_list[2], &cmd);
     err_code = execve(cmd.path, cmd.args, NULL);
     if (err_code == -1)
-        error_msg(0, "couldn't find a program to execute");
+        exit_msg();
 }
 
 void    second_child(t_data *data, int *pipe_ends)
@@ -47,15 +47,15 @@ void    second_child(t_data *data, int *pipe_ends)
 
     close(pipe_ends[P_WRITE]);
     dup2(pipe_ends[P_READ], STDIN_FILENO);
-    outfile_fd = open(data->arg_list[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+    outfile_fd = open(data->arg_list[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (outfile_fd == -1)
-        error_msg(2, "couldn't open <file2>");
+        exit_msg();
     dup2(outfile_fd, STDOUT_FILENO);
     close(outfile_fd);
     init_cmd(data->envp, data->arg_list[3], &cmd);
     err_code = execve(cmd.path, cmd.args, NULL);
     if (err_code == -1)
-        error_msg(0, "couldn't find a program to execute");
+        exit_msg();
 }
 
 void    parent_process(int *pipe_ends, pid_t *pid)

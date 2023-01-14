@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:41:31 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/13 18:18:10 by Arsene           ###   ########.fr       */
+/*   Updated: 2023/01/14 13:54:33 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*validated_path(char **paths_list, char *args)
 	char	*cmd;
 	int		index;
 
-	cmd = ft_cutword(args);
+	cmd = cut_first_word(args);
 	index = 0;
 	while (paths_list[index] != NULL)
 	{
@@ -59,26 +59,7 @@ char	*validated_path(char **paths_list, char *args)
 	return (NULL);
 }
 
-int	ft_count_words(char *str)
-{
-	int	i;
-	int	counter;
-
-	i = 0;
-	counter = 0;
-	while (str[i] != '\0')
-	{
-		while (str[i] == ' ' && str[i] != '\0')
-			i++;
-		if (str[i] != ' ' && str[i] != '\0')
-			counter++;
-		while (str[i] != ' ' && str[i] != '\0')
-			i++;
-	}
-	return (counter);
-}
-
-char 	*ft_cutword(char *str)
+char 	*cut_first_word(char *str)
 {
 	int		length;
 	int		index;
@@ -96,4 +77,23 @@ char 	*ft_cutword(char *str)
 	}
 	cut[length] = '\0';
 	return (cut);
+}
+
+int	count_words(char *str)
+{
+	int	i;
+	int	counter;
+
+	i = 0;
+	counter = 0;
+	while (str[i] != '\0')
+	{
+		while (str[i] == ' ' && str[i] != '\0')
+			i++;
+		if (str[i] != ' ' && str[i] != '\0')
+			counter++;
+		while (str[i] != ' ' && str[i] != '\0')
+			i++;
+	}
+	return (counter);
 }

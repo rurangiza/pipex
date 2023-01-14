@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:21:06 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/14 12:05:50 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/14 13:57:45 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,22 @@ void	ft_pipex(t_data *data)
     int     pipe_ends[2];
 
 	if (pipe(pipe_ends) == -1)
-	{
-		perror("pipe");
-		exit(EXIT_FAILURE);
-	}
+		exit_msg();
 	pid[0] = fork();
 	if (data->pid[0] == -1)
-    {
-        perror("fork");
-		exit(EXIT_FAILURE);
-    }
+		exit_msg();
 	else if (pid[0] == 0)
 		first_child(data, pipe_ends);
-    pid[1] = fork();
+	pid[1] = fork();
 	if (pid[1] == -1)
-    {
-        perror("fork");
-        exit(EXIT_FAILURE);
-    }
-    else if (pid[1] == 0)
-        second_child(data, pipe_ends);
-    parent_process(pid, pipe_ends);
+		exit_msg();
+	else if (pid[1] == 0)
+		second_child(data, pipe_ends);
+	parent_process(pid, pipe_ends);
+}
+
+void	exit_msg(void)
+{
+	perror("fork");
+	exit(EXIT_FAILURE);
 }
