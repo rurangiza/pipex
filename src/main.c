@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:21:06 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/14 13:57:45 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/14 17:46:58 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int	main(int arg_count, char **arg_list, char **envp)
 {
-    t_data  data;
+	t_data	data;
 
 	if (arg_count != 5)
 		return (error_msg(1, "Usage: ./pipex file1 cmd1 cmd2 file2"));
@@ -30,13 +30,13 @@ int	main(int arg_count, char **arg_list, char **envp)
 
 void	ft_pipex(t_data *data)
 {
-    pid_t   pid[2];
-    int     pipe_ends[2];
+	pid_t	pid[2];
+	int		pipe_ends[2];
 
 	if (pipe(pipe_ends) == -1)
 		exit_msg();
 	pid[0] = fork();
-	if (data->pid[0] == -1)
+	if (pid[0] == -1)
 		exit_msg();
 	else if (pid[0] == 0)
 		first_child(data, pipe_ends);
@@ -46,10 +46,4 @@ void	ft_pipex(t_data *data)
 	else if (pid[1] == 0)
 		second_child(data, pipe_ends);
 	parent_process(pid, pipe_ends);
-}
-
-void	exit_msg(void)
-{
-	perror("fork");
-	exit(EXIT_FAILURE);
 }

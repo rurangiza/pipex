@@ -6,7 +6,7 @@
 #    By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/10 15:24:07 by arurangi          #+#    #+#              #
-#    Updated: 2023/01/14 13:55:02 by arurangi         ###   ########.fr        #
+#    Updated: 2023/01/14 17:50:35 by arurangi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,13 @@ LIBFT	=	./src/library/libft.a
 # DERECTORIES
 LIBFT_DIR	=	./src/library/
 SRC_DIR		=	./src/
-UTILS_DIR	=	./src/utils/
 
 # SOURCE FILES
 SOURCE_FILES	=	${SRC_DIR}main.c \
 					${SRC_DIR}parsing.c \
 					${SRC_DIR}processes.c \
 					${SRC_DIR}init.c \
+					${SRC_DIR}errors.c \
 
 # VARIABLES
 COMPILER	= 	gcc
@@ -54,9 +54,3 @@ fclean:		clean
 re:			fclean all
 
 .PHONY:		all clean fclean re
-
-# run:	all
-# @./pipex file1 "cat" "grep i" file2
-
-#		/usr/local/bin/ls
-#		/usr/bin/grep

@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/14 11:53:36 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/14 17:49:22 by arurangi         ###   ########.fr       */
+/*   Created: 2023/01/14 16:32:04 by arurangi          #+#    #+#             */
+/*   Updated: 2023/01/14 17:43:37 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
- * setup my environment before doing somework
-*/
-
 #include "../includes/pipex.h"
 
-void	load_data(t_data *data, int arg_count, char **arg_list, char **envp)
+void	exit_msg(void)
 {
-	data->envp = envp;
-	data->arg_count = arg_count;
-	data->arg_list = arg_list;
+	perror("pipex");
+	exit(EXIT_FAILURE);
 }

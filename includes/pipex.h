@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:28:04 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/14 13:55:07 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/14 17:51:17 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,32 @@
 typedef struct s_cmd {
 	char	*path;
 	char	**args;
-} t_cmd;
+}	t_cmd;
 
 typedef struct s_data {
-    pid_t   pid[2];
-    int     pipe_ends[2];
+	pid_t	pid[2];
+	int		pipe_ends[2];
 	int		arg_count;
 	char	**arg_list;
 	char	**envp;
-    // t_cmd   cmd_1;
-    // t_cmd   cmd_2;
-} t_data;
+}	t_data;
 
-void    ft_pipex(t_data *data);
+void	ft_pipex(t_data *data);
 
 /* ~~~~~~ INITTIALIZTION ~~~~~~~ */
 void	load_data(t_data *data, int arg_count, char **arg_list, char **envp);
 
 /* ~~~~~~~~~~ PROCESS ~~~~~~~~~ */
-void    first_child(t_data *data, int *pipe_ends);
-void    second_child(t_data *data, int *pipe_ends);
+void	first_child(t_data *data, int *pipe_ends);
+void	second_child(t_data *data, int *pipe_ends);
 void	parent_process(int *pipe_ends, pid_t *pid);
 
 /* ~~~~~~~~~ PARSING ~~~~~~~~~ */
-char    *init_cmd(char **envp, char *args, t_cmd *cmd);
+char	*init_cmd(char **envp, char *args, t_cmd *cmd);
 
-char    *validated_path(char **paths_list, char *args);
-int     count_words(char *str);
-char    *cut_first_word(char *str);
+char	*validated_path(char **paths_list, char *args);
+int		count_words(char *str);
+char	*cut_first_word(char *str);
 
 /* ~~~~~~~~ ERROR HANDLING ~~~~~~ */
 void	exit_msg(void);
