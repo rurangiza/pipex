@@ -1,5 +1,5 @@
 # pipex
-### Recréer le méchaniseme "pipe" (tube)
+### Recréer le méchanisme "pipe" (tube)
 
 
 <img src="documentation/Unix_pipeline_exemple.gif" width="100%" alt="animation of how pipeline work in UNIX"/>
