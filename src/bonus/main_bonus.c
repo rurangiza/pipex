@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 10:37:46 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/15 15:33:20 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/15 19:03:47 by Arsene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int arg_count, char **arg_list, char **envp)
 {
 	t_data	data;
 
-	if (arg_count != 5)
+	if (arg_count < 5)
 		return (error_msg(1, "Usage: ./pipex file1 cmd1 cmd2 file2"));
 	load_data(&data, arg_count, arg_list, envp);
 	ft_pipex(&data);
@@ -47,23 +47,13 @@ void	ft_pipex(t_data *data)
 		else if (pid == 0)
 		{
 			if (index == 2)
-			{
-				success_msg(0, "---> first_child");
 				first_child(data, pipe_ends);
-			}
 			else if (index == data->arg_count - 2)
-			{
-				success_msg(0, "---> last_child");
 				last_child(data);
-			}
 			else
-			{
-				success_msg(0, "---> middle_child");
 				middle_child(data, pipe_ends, index);
-			}
 		}
 		close(pipe_ends[P_WRITE]);
-		info_msg(0, "index = %d, arg_count = %d", index, data->arg_count);
 		if (index <= data->arg_count - 2)
 		{
 			dup2(pipe_ends[P_READ], STDIN_FILENO);

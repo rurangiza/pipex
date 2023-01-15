@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   processes_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 10:32:06 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/15 15:30:18 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/15 19:06:27 by Arsene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	first_child(t_data *data, int *outfile)
 	close(infile);
 	
 	dup2(outfile[P_WRITE], STDOUT_FILENO);
-
-	info_msg(0, "1st_child : outfile = %s", data->arg_list[2]);
 
 	init_cmd(data->envp, data->arg_list[2], &cmd);
 	err_code = execve(cmd.path, cmd.args, NULL);
@@ -61,13 +59,10 @@ void	last_child(t_data *data)
 	outfile = open(data->arg_list[outfile_index], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (outfile == -1)
 		exit_msg();
-	close(outfile);
 	dup2(outfile, STDOUT_FILENO);
+	close(outfile);
 	
-	info_msg(0, "last_child: outfile = %s", data->arg_list[outfile_index]);
-
 	init_cmd(data->envp, data->arg_list[outfile_index - 1], &cmd);
-	info_msg(0, "initialized command");
 	err_code = execve(cmd.path, cmd.args, NULL);
 	if (err_code == -1)
 		exit_msg();
