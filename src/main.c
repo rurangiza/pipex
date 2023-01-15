@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:21:06 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/14 17:46:58 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/15 10:35:23 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,5 @@ void	ft_pipex(t_data *data)
 	else if (pid[1] == 0)
 		second_child(data, pipe_ends);
 	parent_process(pid, pipe_ends);
+	system("leaks pipex");
 }

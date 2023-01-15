@@ -6,18 +6,11 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 20:01:10 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/14 17:53:05 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/15 10:32:12 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
-
-/*
- * What parameters changes between the two child processes?
- * - INPUT
- * - OUTPUT
- * - COMMANDS INFO
-*/
 
 void	first_child(t_data *data, int *pipe_ends)
 {
