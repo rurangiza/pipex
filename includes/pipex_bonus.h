@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 10:38:15 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/15 14:59:28 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/15 20:53:50 by Arsene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	load_data(t_data *data, int arg_count, char **arg_list, char **envp);
 void	first_child(t_data *data, int *outfile);
 void	middle_child(t_data *data, int *outfile, int arg_number);
 void	last_child(t_data *data);
-void	parent_process(int *pipe_ends, pid_t pid);
+void	parent_process(pid_t pid, int *pipe_ends, int index, int arg_count);
 
 /* ~~~~~~~~~ PARSING ~~~~~~~~~ */
 char	*init_cmd(char **envp, char *args, t_cmd *cmd);

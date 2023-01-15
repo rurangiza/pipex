@@ -6,7 +6,7 @@
 /*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 10:37:46 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/15 19:03:47 by Arsene           ###   ########.fr       */
+/*   Updated: 2023/01/15 20:57:11 by Arsene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,14 @@ int	main(int arg_count, char **arg_list, char **envp)
 void	ft_pipex(t_data *data)
 {
 	pid_t	pid;
-	int		status;
 	int		pipe_ends[2];
+	int		index;
 
-	int index = 2;
+	index = 2;
 	while (index <= data->arg_count - 2)
 	{
-		// create a pipe
 		if (pipe(pipe_ends) == -1)
 			exit_msg();
-		// create a child process
 		pid = fork();
 		if (pid == -1)
 			exit_msg();
@@ -53,18 +51,7 @@ void	ft_pipex(t_data *data)
 			else
 				middle_child(data, pipe_ends, index);
 		}
-		close(pipe_ends[P_WRITE]);
-		if (index <= data->arg_count - 2)
-		{
-			dup2(pipe_ends[P_READ], STDIN_FILENO);
-			close(pipe_ends[P_READ]);
-		}
-		else
-			close(pipe_ends[P_READ]);
-		waitpid(pid, &status, 0);
+		parent_process(pid, pipe_ends, index, data->arg_count);
 		index++;
 	}
 }
-	// change I/O of child process
-	// execute the command
-// parent: waits for the child to terminate
