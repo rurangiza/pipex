@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:32:04 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/14 17:43:37 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/16 10:41:48 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	exit_msg(void)
 {
-	perror("pipex");
+	error_msg(0, "%s:%d: %s", __FILE__, __LINE__, strerror(errno));
+	
 	exit(EXIT_FAILURE);
 }

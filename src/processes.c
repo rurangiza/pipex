@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 20:01:10 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/15 10:32:12 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/16 10:07:03 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,12 @@ void	parent_process(int *pipe_ends, pid_t *pid)
 	while (i < 2)
 	{
 		waitpid(pid[i], &status, 0);
-		if (WIFEXITED(status))
-			success_msg(0, "Parent: Child %d terminated normally", pid[i]);
-		else if (WIFSIGNALED(status))
+		if (WIFSIGNALED(status))
 		{
 			if (WTERMSIG(status) == SIGTERM)
-				error_msg(0, "Parent: Child [%d] got SIGTERM", pid[i]);
+				exit_msg();
 			if (WTERMSIG(status) == SIGKILL)
-				error_msg(0, "Parent: child [%d] got SIGKILL", pid[i]);
+				exit_msg();
 		}
 		i++;
 	}
