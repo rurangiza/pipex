@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   processes_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 10:32:06 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/15 20:58:15 by Arsene           ###   ########.fr       */
+/*   Updated: 2023/01/16 09:31:37 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,7 @@ void	parent_process(pid_t pid, int *pipe_ends, int index, int arg_count)
 	else
 		close(pipe_ends[P_READ]);
 	waitpid(pid, &status, 0);
-	if (WIFEXITED(status))
-		success_msg(0, "Parent: Child %d terminated normally", pid);
-	else if (WIFSIGNALED(status))
+	if (WIFSIGNALED(status))
 	{
 		if (WTERMSIG(status) == SIGTERM)
 			exit_msg();
