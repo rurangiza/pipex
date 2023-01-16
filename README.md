@@ -34,3 +34,6 @@ Articles
 Vidéos
 - [Unix Processes in C](https://www.youtube.com/playlist?list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY) (Playlist)
 - [fork()](https://www.youtube.com/watch?v=xVSPv-9x3gk), [dup()](https://www.youtube.com/watch?v=EqndHT606Tw) et [pipe()](https://www.youtube.com/watch?v=uHH7nHkgZ4w) expliqué simplement
+
+Testeur
+- [PIPEX EXAMINATOR](https://github.com/mariadaan/PIPEXaminator)
