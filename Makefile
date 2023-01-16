@@ -6,7 +6,7 @@
 #    By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/10 15:24:07 by arurangi          #+#    #+#              #
-#    Updated: 2023/01/16 14:05:02 by arurangi         ###   ########.fr        #
+#    Updated: 2023/01/16 15:57:15 by arurangi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,6 @@ BONUS_FILES		=	${BONUS_DIR}main_bonus.c \
 					${BONUS_DIR}processes_bonus.c \
 					${BONUS_DIR}init_bonus.c \
 					${BONUS_DIR}errors_bonus.c \
-
 
 # VARIABLES
 COMPILER	= 	gcc

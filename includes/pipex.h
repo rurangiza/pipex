@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:28:04 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/16 11:24:38 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:54:25 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ int		count_words(char *str);
 char	*cut_first_word(char *str);
 
 /* ~~~~~~~~ ERROR HANDLING ~~~~~~ */
-void	exit_msg(void);
+void	exit_msg(int error_code, char *title);
 
 #endif

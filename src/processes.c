@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 20:01:10 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/16 13:54:28 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:24:24 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ void	first_child(t_data *data, int *pipe_ends)
 	close(pipe_ends[P_READ]);
 	infile_fd = open(data->arg_list[1], O_RDONLY);
 	if (infile_fd == -1)
-		exit_msg();
+		exit_msg(EXIT_FAILURE, "infile");
 	if (dup2(infile_fd, STDIN_FILENO) < 0)
-		exit(EXIT_FAILURE);
+		exit_msg(0, "dup()");
 	close(infile_fd);
 	dup2(pipe_ends[P_WRITE], STDOUT_FILENO);
 	init_cmd(data->envp, data->arg_list[2], &cmd);
 	if (cmd.path == NULL)
-		exit_msg();
+		exit_msg(0, "shell cmd");
 	err_code = execve(cmd.path, cmd.args, NULL);
 	if (err_code == -1)
-		exit_msg();
+		exit_msg(0, "execve");
 }
 
 void	second_child(t_data *data, int *pipe_ends)
@@ -44,15 +44,15 @@ void	second_child(t_data *data, int *pipe_ends)
 	dup2(pipe_ends[P_READ], STDIN_FILENO);
 	outfile_fd = open(data->arg_list[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (outfile_fd == -1)
-		exit_msg();
+		exit_msg(1, "outfile");
 	dup2(outfile_fd, STDOUT_FILENO);
 	close(outfile_fd);
 	init_cmd(data->envp, data->arg_list[3], &cmd);
 	if (cmd.path == NULL)
-		exit_msg();
+		exit_msg(0, "shell cmd");
 	err_code = execve(cmd.path, cmd.args, NULL);
 	if (err_code == -1)
-		exit_msg();
+		exit_msg(0, "execve");
 }
 
 void	parent_process(int *pipe_ends, pid_t *pid)
@@ -69,11 +69,14 @@ void	parent_process(int *pipe_ends, pid_t *pid)
 		if (WIFSIGNALED(status))
 		{
 			if (WTERMSIG(status) == SIGTERM)
-				exit_msg();
+				exit_msg(SIGTERM, "SIGTERM");
 			if (WTERMSIG(status) == SIGKILL)
-				exit_msg();
+				exit_msg(0, "SIGKILL");
 		}
-		// if (WEXITSTATUS(status))
+		if (WEXITSTATUS(status))
+		{
+			exit(1);
+		}
 			// exit(WEXITSTATUS(status));
 		i++;
 	}
