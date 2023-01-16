@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:45:54 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/16 11:32:24 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/16 11:39:40 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_putchar_mod(char c)
 	return (1);
 }
 
-static int	ft_putstr_mod(char *str)
+int	ft_putstr_mod(char *str)
 {
 	int	i;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 10:37:46 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/15 20:57:11 by Arsene           ###   ########.fr       */
+/*   Updated: 2023/01/16 15:32:38 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int arg_count, char **arg_list, char **envp)
 	t_data	data;
 
 	if (arg_count < 5)
-		return (error_msg(1, "Usage: ./pipex file1 cmd1 cmd2 file2"));
+		return (error_msg(1, "Usage: ./pipex file1 cmd1 cmd2 ... cmdn file2"));
 	load_data(&data, arg_count, arg_list, envp);
 	ft_pipex(&data);
 	return (EXIT_SUCCESS);

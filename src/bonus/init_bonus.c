@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 11:53:36 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/15 13:46:25 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:31:22 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
  * setup my environment before doing somework
 */
 
-#include "../../includes/pipex.h"
+#include "../../includes/pipex_bonus.h"
 
 void	load_data(t_data *data, int arg_count, char **arg_list, char **envp)
 {

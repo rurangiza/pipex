@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 14:01:48 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/16 11:32:34 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/16 11:38:17 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ int		ft_abs(int x);
 int		success_msg(int return_code, char *message, ...);
 int		error_msg(int return_code, char *message, ...);
 int		info_msg(int return_code, char *message, ...);
+
 int		ft_printf(const char *str, ...);
 
 void	ft_putfs(char ch, va_list args, int *counter);

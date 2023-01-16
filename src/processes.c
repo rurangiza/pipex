@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 20:01:10 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/16 10:07:03 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/16 13:54:28 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	first_child(t_data *data, int *pipe_ends)
 	close(infile_fd);
 	dup2(pipe_ends[P_WRITE], STDOUT_FILENO);
 	init_cmd(data->envp, data->arg_list[2], &cmd);
+	if (cmd.path == NULL)
+		exit_msg();
 	err_code = execve(cmd.path, cmd.args, NULL);
 	if (err_code == -1)
 		exit_msg();
@@ -46,6 +48,8 @@ void	second_child(t_data *data, int *pipe_ends)
 	dup2(outfile_fd, STDOUT_FILENO);
 	close(outfile_fd);
 	init_cmd(data->envp, data->arg_list[3], &cmd);
+	if (cmd.path == NULL)
+		exit_msg();
 	err_code = execve(cmd.path, cmd.args, NULL);
 	if (err_code == -1)
 		exit_msg();
@@ -69,6 +73,8 @@ void	parent_process(int *pipe_ends, pid_t *pid)
 			if (WTERMSIG(status) == SIGKILL)
 				exit_msg();
 		}
+		// if (WEXITSTATUS(status))
+			// exit(WEXITSTATUS(status));
 		i++;
 	}
 }
