@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:21:06 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/16 10:33:12 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/16 11:23:11 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	main(int arg_count, char **arg_list, char **envp)
 	if (arg_count != 5)
 		return (error_msg(1, "Usage: ./pipex file1 cmd1 cmd2 file2"));
 	load_data(&data, arg_count, arg_list, envp);
-	info_msg(0, "%s:%d: information", __FILE__, __LINE__);
 	ft_pipex(&data);
 	return (EXIT_SUCCESS);
 }

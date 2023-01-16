@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:28:04 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/16 10:38:50 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/16 11:24:38 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@
 
 # define P_READ 0
 # define P_WRITE 1
-# define FIRST_CHILD 0
-# define SECOND_CHILD 1
 
 typedef struct s_cmd {
 	char	*path;

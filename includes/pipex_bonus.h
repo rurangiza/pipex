@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 10:38:15 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/15 20:53:50 by Arsene           ###   ########.fr       */
+/*   Updated: 2023/01/16 11:24:53 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@
 # include <unistd.h>
 # include <sys/wait.h>
 # include <fcntl.h>
+# include <string.h>
 
 # define P_READ 0
 # define P_WRITE 1
-# define FIRST_CHILD 0
-# define SECOND_CHILD 1
 
 typedef struct s_cmd {
 	char	*path;
@@ -30,8 +29,6 @@ typedef struct s_cmd {
 }	t_cmd;
 
 typedef struct s_data {
-	pid_t	pid[2];
-	int		pipe_ends[2];
 	int		arg_count;
 	char	**arg_list;
 	char	**envp;
