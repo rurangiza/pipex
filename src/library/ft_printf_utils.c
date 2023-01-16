@@ -6,11 +6,11 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:45:54 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/16 10:57:38 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/16 11:05:31 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libc.h"
+#include "libft.h"
 
 static int	ft_putchar_mod(char c)
 {
@@ -82,6 +82,24 @@ static int	ft_puthex(unsigned long nbr, char format, int *counter)
 		ch = base[nbr];
 		if (format == 'X' && ft_isalpha(ch))
 			ch -= 32;
+		ft_putchar(ch);
+	}
+	return (*counter);
+}
+
+int	ft_putnbr_u(unsigned int nbr, int *counter)
+{
+	char			ch;
+
+	if (nbr > 9)
+	{
+		ft_putnbr_u((nbr / 10), counter);
+		ft_putnbr_u((nbr % 10), counter);
+	}
+	else if (nbr >= 0 && nbr < 10)
+	{
+		(*counter)++;
+		ch = nbr + '0';
 		ft_putchar(ch);
 	}
 	return (*counter);
