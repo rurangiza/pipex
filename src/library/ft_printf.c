@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 16:49:26 by arurangi          #+#    #+#             */
-/*   Updated: 2022/12/07 07:40:03 by Arsene           ###   ########.fr       */
+/*   Updated: 2023/01/16 11:30:20 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,26 @@ int	ft_printf(const char *str, ...)
 	}
 	va_end(args);
 	return (counter);
+}
+
+void	ft_putfs(char ch, va_list args, int *counter)
+{
+	if (ch == 'c')
+			*counter += ft_putchar_mod(va_arg(args, int));
+	else if (ch == 's')
+		*counter += ft_putstr_mod(va_arg(args, char *));
+	else if (ch == 'i' || ch == 'd')
+		*counter = ft_putnbr_mod(va_arg(args, int), counter);
+	else if (ch == 'u')
+		*counter = ft_putnbr_u(va_arg(args, unsigned int), counter);
+	else if (ch == '%')
+		*counter += ft_putchar_mod('%');
+	else if (ch == 'x' || ch == 'X')
+		ft_puthex(va_arg(args, unsigned int), ch, counter);
+	else if (ch == 'p')
+	{
+		ft_putstr_mod("0x");
+		ft_puthex(va_arg(args, unsigned long), ch, counter);
+		*counter += 2;
+	}
 }

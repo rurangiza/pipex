@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 14:01:48 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/16 10:56:12 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/16 11:32:34 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,11 @@ int		info_msg(int return_code, char *message, ...);
 int		ft_printf(const char *str, ...);
 
 void	ft_putfs(char ch, va_list args, int *counter);
+int		ft_putnbr_u(unsigned int nbr, int *counter);
+int		ft_puthex(unsigned long nbr, char format, int *counter);
+int		ft_putnbr_mod(int nbr, int *counter);
+int		ft_putstr_mod(char *str);
+int		ft_putchar_mod(char c);
 
 /* FREE */
 void	ft_free_matrix(char **matrix);
