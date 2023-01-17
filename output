@@ -1,0 +1,7 @@
+PIPEXaminator
+documentation
+errors.o
+init.o
+main.o
+parsing.o
+processes.o

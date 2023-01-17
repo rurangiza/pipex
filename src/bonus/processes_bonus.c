@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 10:32:06 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/16 15:32:58 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:55:47 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void	parent_process(pid_t pid, int *pipe_ends, int index, int arg_count)
 	else
 		close(pipe_ends[P_READ]);
 	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		exit_msg();
 	if (WIFSIGNALED(status))
 	{
 		if (WTERMSIG(status) == SIGTERM)

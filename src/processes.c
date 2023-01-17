@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   processes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 20:01:10 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/17 07:44:37 by Arsene           ###   ########.fr       */
+/*   Updated: 2023/01/17 17:05:17 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	parent_process(int *pipe_ends, pid_t *pid)
 {
 	int	status;
 	int	i;
-	int	wpid;
 
 	close(pipe_ends[P_READ]);
 	close(pipe_ends[P_WRITE]);

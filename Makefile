@@ -6,7 +6,7 @@
 #    By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/10 15:24:07 by arurangi          #+#    #+#              #
-#    Updated: 2023/01/16 15:57:15 by arurangi         ###   ########.fr        #
+#    Updated: 2023/01/17 17:11:02 by arurangi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ OBJB		=	${BONUS_FILES:.c=.o}
 				$(COMPILER) $(C_FLAGS) -c $< -o $@
 
 $(NAME): 	$(OBJ) $(LIBFT)
-				$(COMPILER) $(OBJ) $(LIBFT_DIR)libft.a -o $(NAME)
+				$(COMPILER) $(OBJ) $(LIBFT_DIR)libft.a -o ${NAME}
 
 $(LIBFT):
 				make -C $(LIBFT_DIR)
