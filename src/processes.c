@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   processes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 20:01:10 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/16 16:24:24 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/17 07:44:37 by Arsene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	parent_process(int *pipe_ends, pid_t *pid)
 {
 	int	status;
 	int	i;
+	int	wpid;
 
 	close(pipe_ends[P_READ]);
 	close(pipe_ends[P_WRITE]);
@@ -66,18 +67,15 @@ void	parent_process(int *pipe_ends, pid_t *pid)
 	while (i < 2)
 	{
 		waitpid(pid[i], &status, 0);
+		if (WIFEXITED(status))
+			exit(WEXITSTATUS(status));
 		if (WIFSIGNALED(status))
 		{
 			if (WTERMSIG(status) == SIGTERM)
-				exit_msg(SIGTERM, "SIGTERM");
+				exit_msg(WTERMSIG(status), "SIGTERM");
 			if (WTERMSIG(status) == SIGKILL)
-				exit_msg(0, "SIGKILL");
+				exit_msg(WTERMSIG(status), "SIGKILL");
 		}
-		if (WEXITSTATUS(status))
-		{
-			exit(1);
-		}
-			// exit(WEXITSTATUS(status));
 		i++;
 	}
 }

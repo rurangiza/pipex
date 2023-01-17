@@ -29,6 +29,7 @@ Articles
 - [Creating and Killing Child Processes in C](https://www.codequoi.com/en/creating-and-killing-child-processes-in-c/)
 - [Pipe: an Inter-Process Communication Method](https://www.codequoi.com/en/pipe-an-inter-process-communication-method/)
 - [Handling a File by its Descriptor in C](https://www.codequoi.com/en/handling-a-file-by-its-descriptor-in-c/)
+- [Errno and Error Management in C](https://www.codequoi.com/en/errno-and-error-management-in-c/)
 - [Write a Shell in C](https://brennan.io/2015/01/16/write-a-shell-in-c/)
 
 Vidéos
