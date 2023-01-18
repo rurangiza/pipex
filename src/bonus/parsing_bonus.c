@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:41:31 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/16 15:33:41 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/18 12:51:34 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ char	*validated_path(char **paths_list, char *args)
 		index++;
 	}
 	ft_free_matrix(paths_list);
-	perror(cmd);
 	free(cmd);
 	return (NULL);
 }

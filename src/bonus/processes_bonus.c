@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 10:32:06 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/18 10:54:25 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/18 12:50:12 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ void	first_child(t_data *data, int *pipe)
 	close(pipe[P_READ]);
 	infile = open(data->arg_list[1], O_RDONLY);
 	if (infile == -1)
-		exit_msg();
+		exit_nofile_msg(data->arg_list[1]);
 	if (dup2(infile, STDIN_FILENO) < 0)
 		exit(EXIT_FAILURE);
 	close(infile);
 	dup2(pipe[P_WRITE], STDOUT_FILENO);
 	init_cmd(data->envp, data->arg_list[2], &cmd);
+	if (cmd.path == NULL)
+		exit_wrongcmd_msg(cmd.args[0], 0);
 	err_code = execve(cmd.path, cmd.args, NULL);
 	if (err_code == -1)
 		exit_msg();
@@ -40,6 +42,8 @@ void	middle_child(t_data *data, int *outfile, int arg_number)
 	close(outfile[P_READ]);
 	dup2(outfile[P_WRITE], STDOUT_FILENO);
 	init_cmd(data->envp, data->arg_list[arg_number], &cmd);
+	if (cmd.path == NULL)
+		exit_wrongcmd_msg(cmd.args[0], 0);
 	err_code = execve(cmd.path, cmd.args, NULL);
 	if (err_code == -1)
 		exit_msg();
@@ -56,10 +60,12 @@ void	last_child(t_data *data)
 	outfile = open(data->arg_list[outfile_index],
 			O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (outfile == -1)
-		exit_msg();
+		exit_nofile_msg(data->arg_list[outfile_index]);
 	dup2(outfile, STDOUT_FILENO);
 	close(outfile);
 	init_cmd(data->envp, data->arg_list[outfile_index - 1], &cmd);
+	if (cmd.path == NULL)
+		exit_wrongcmd_msg(cmd.args[0], 127);
 	err_code = execve(cmd.path, cmd.args, NULL);
 	if (err_code == -1)
 		exit_msg();
@@ -81,11 +87,10 @@ void	parent_process(pid_t pid, int *pipe_ends, int index, int arg_count)
 	if (WIFEXITED(status))
 	{
 		if (WEXITSTATUS(status) != 0)
-			exit_msg();
+			exit(WEXITSTATUS(status));
 	}
 	if (WIFSIGNALED(status))
 	{
-		info_msg(0, "---- hello");
 		if (WTERMSIG(status) == SIGTERM)
 			exit_msg();
 		else if (WTERMSIG(status) == SIGKILL)
