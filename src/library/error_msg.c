@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Arsene <Arsene@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 09:51:01 by Arsene            #+#    #+#             */
-/*   Updated: 2022/12/15 09:52:17 by Arsene           ###   ########.fr       */
+/*   Updated: 2023/01/18 11:15:30 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	error_msg(int return_code, char *message, ...)
 	va_list	args;
 	int		index;
 
-	ft_putstr("\033[31m✖ Error\033[0m: ");
+	//ft_putstr_fd("\033[31m✖ Error\033[0m: ", 2);
 	va_start(args, message);
 	index = 0;
 	while (message[index])
@@ -25,15 +25,41 @@ int	error_msg(int return_code, char *message, ...)
 		if (message[index] == '%')
 		{
 			if (message[index + 1] == 's')
-				ft_putstr(va_arg(args, char *));
+				ft_putstr_fd(va_arg(args, char *), 2);
 			else if (message[index + 1] == 'd')
 				ft_putnbr(va_arg(args, int));
 			index++;
 		}
 		else
-			ft_putchar(message[index]);
+			ft_putchar_fd(message[index], 2);
 		index++;
 	}
-	write(1, "\n", 1);
+	write(2, "\n", 1);
 	return (return_code);
 }
+
+// int	error_msg(int return_code, char *message, ...)
+// {
+// 	va_list	args;
+// 	int		index;
+
+// 	ft_putstr("\033[31m✖ Error\033[0m: ");
+// 	va_start(args, message);
+// 	index = 0;
+// 	while (message[index])
+// 	{
+// 		if (message[index] == '%')
+// 		{
+// 			if (message[index + 1] == 's')
+// 				ft_putstr(va_arg(args, char *));
+// 			else if (message[index + 1] == 'd')
+// 				ft_putnbr(va_arg(args, int));
+// 			index++;
+// 		}
+// 		else
+// 			ft_putchar(message[index]);
+// 		index++;
+// 	}
+// 	write(1, "\n", 1);
+// 	return (return_code);
+// }
