@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 20:01:10 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/17 17:05:17 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/18 10:58:46 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	second_child(t_data *data, int *pipe_ends)
 	close(outfile_fd);
 	init_cmd(data->envp, data->arg_list[3], &cmd);
 	if (cmd.path == NULL)
-		exit_msg(0, "shell cmd");
+		exit_msg(1, "shell cmd2");
 	err_code = execve(cmd.path, cmd.args, NULL);
 	if (err_code == -1)
 		exit_msg(0, "execve");
@@ -65,9 +65,14 @@ void	parent_process(int *pipe_ends, pid_t *pid)
 	i = 0;
 	while (i < 2)
 	{
-		waitpid(pid[i], &status, 0);
+		waitpid(pid[i], &status, 0);	
 		if (WIFEXITED(status))
-			exit(WEXITSTATUS(status));
+		{
+			if (WEXITSTATUS(status) != 0)
+				exit_msg(WEXITSTATUS(status), "NORM");
+			else
+				exit(EXIT_SUCCESS);
+		}
 		if (WIFSIGNALED(status))
 		{
 			if (WTERMSIG(status) == SIGTERM)

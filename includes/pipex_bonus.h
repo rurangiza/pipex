@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 10:38:15 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/16 11:24:53 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/18 09:48:42 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_pipex(t_data *data);
 void	load_data(t_data *data, int arg_count, char **arg_list, char **envp);
 
 /* ~~~~~~~~~~ PROCESS ~~~~~~~~~ */
-void	first_child(t_data *data, int *outfile);
+void	first_child(t_data *data, int *pipe);
 void	middle_child(t_data *data, int *outfile, int arg_number);
 void	last_child(t_data *data);
 void	parent_process(pid_t pid, int *pipe_ends, int index, int arg_count);

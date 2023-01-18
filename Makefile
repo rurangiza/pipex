@@ -6,7 +6,7 @@
 #    By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/10 15:24:07 by arurangi          #+#    #+#              #
-#    Updated: 2023/01/17 17:11:02 by arurangi         ###   ########.fr        #
+#    Updated: 2023/01/18 10:26:04 by arurangi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,13 +42,13 @@ OBJB		=	${BONUS_FILES:.c=.o}
 
 # RULES
 %.o: 		%.c
-				$(COMPILER) $(C_FLAGS) -c $< -o $@
+				@$(COMPILER) $(C_FLAGS) -c $< -o $@
 
 $(NAME): 	$(OBJ) $(LIBFT)
-				$(COMPILER) $(OBJ) $(LIBFT_DIR)libft.a -o ${NAME}
+				@$(COMPILER) $(OBJ) $(LIBFT_DIR)libft.a -o ${NAME}
 
 $(LIBFT):
-				make -C $(LIBFT_DIR)
+				@make -C $(LIBFT_DIR)
 
 all:		$(NAME)
 
@@ -63,6 +63,6 @@ fclean:		clean
 re:			fclean all
 
 bonus:		${OBJB} $(LIBFT)
-			$(COMPILER) $(OBJB) $(LIBFT_DIR)libft.a -o $(NAME)
+			@$(COMPILER) $(OBJB) $(LIBFT_DIR)libft.a -o $(NAME)
 
 .PHONY:		all clean fclean re bonus
