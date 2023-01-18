@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 10:32:06 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/18 14:00:55 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:04:54 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	middle_child(t_data *data, int *outfile, int arg_number)
 {
 	int		err_code;
 	t_cmd	cmd;
-	
+
 	close(outfile[P_READ]);
 	dup2(outfile[P_WRITE], STDOUT_FILENO);
 	init_cmd(data->envp, data->arg_list[arg_number], &cmd);

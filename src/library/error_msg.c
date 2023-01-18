@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 09:51:01 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/18 11:28:55 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:06:13 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@ int	error_msg(int return_code, char *message, ...)
 	va_list	args;
 	int		index;
 
-	//ft_putstr_fd("\033[31m✖ Error\033[0m: ", 2);
 	va_start(args, message);
 	index = 0;
 	while (message[index])
 	{
 		if (message[index] == '%')
 		{
-			if (message[index + 1] && message[index + 1]== 's')
+			if (message[index + 1] && message[index + 1] == 's')
 				ft_putstr_fd(va_arg(args, char *), 2);
 			else if (message[index + 1] && message[index + 1] == 'd')
 				ft_putnbr_fd(va_arg(args, int), 2);
@@ -37,29 +36,3 @@ int	error_msg(int return_code, char *message, ...)
 	write(2, "\n", 1);
 	return (return_code);
 }
-
-// int	error_msg(int return_code, char *message, ...)
-// {
-// 	va_list	args;
-// 	int		index;
-
-// 	ft_putstr("\033[31m✖ Error\033[0m: ");
-// 	va_start(args, message);
-// 	index = 0;
-// 	while (message[index])
-// 	{
-// 		if (message[index] == '%')
-// 		{
-// 			if (message[index + 1] == 's')
-// 				ft_putstr(va_arg(args, char *));
-// 			else if (message[index + 1] == 'd')
-// 				ft_putnbr(va_arg(args, int));
-// 			index++;
-// 		}
-// 		else
-// 			ft_putchar(message[index]);
-// 		index++;
-// 	}
-// 	write(1, "\n", 1);
-// 	return (return_code);
-// }

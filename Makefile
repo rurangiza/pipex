@@ -6,7 +6,7 @@
 #    By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/10 15:24:07 by arurangi          #+#    #+#              #
-#    Updated: 2023/01/18 10:26:04 by arurangi         ###   ########.fr        #
+#    Updated: 2023/01/18 14:07:00 by arurangi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,12 +53,12 @@ $(LIBFT):
 all:		$(NAME)
 
 clean:
-				make -C $(LIBFT_DIR) fclean
-				rm -f $(OBJ) core
-				rm -f $(OBJB) core
+				@make -C $(LIBFT_DIR) fclean
+				@rm -f $(OBJ) core
+				@rm -f $(OBJB) core
 
 fclean:		clean
-				$(RM) $(NAME)
+				@$(RM) $(NAME)
 
 re:			fclean all
 
