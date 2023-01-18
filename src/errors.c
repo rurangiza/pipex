@@ -6,11 +6,17 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:32:04 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/18 13:12:45 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:02:24 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
+
+void	exit_msg(void)
+{
+	perror("pipex");
+	exit(errno);
+}
 
 void	exit_wrongcmd_msg(char *cmd, int error_code)
 {
@@ -26,17 +32,4 @@ void	exit_nofile_msg(char *filename)
 	write(2, filename, ft_strlen(filename));
 	write(2, "\n", 1);
 	exit(0);
-}
-
-// void	exit_msg(int error_number, char *title)
-// {
-// 	perror(title);
-// 	exit(error_number);
-// }
-
-
-void	exit_msg(void)
-{
-	perror("pipex");
-	exit(errno);
 }

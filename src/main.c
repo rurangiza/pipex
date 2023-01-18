@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:21:06 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/18 12:58:11 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:02:03 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,3 @@ void	ft_pipex(t_data *data)
 		index++;
 	}
 }
-
-// void	ft_pipex(t_data *data)
-// {
-// 	pid_t	pid[2];
-// 	int		pipe_ends[2];
-
-// 	if (pipe(pipe_ends) == -1)
-// 		exit_msg(0, "pipe");
-// 	pid[0] = fork();
-// 	if (pid[0] == -1)
-// 		exit_msg(0, "fork");
-// 	else if (pid[0] == 0)
-// 		first_child(data, pipe_ends);
-// 	pid[1] = fork();
-// 	if (pid[1] == -1)
-// 		exit_msg(0, "2nd fork");
-// 	else if (pid[1] == 0)
-// 		second_child(data, pipe_ends);
-// 	parent_process(pid, pipe_ends);
-// }

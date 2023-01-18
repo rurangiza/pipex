@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 10:32:06 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/18 12:50:12 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:00:55 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	parent_process(pid_t pid, int *pipe_ends, int index, int arg_count)
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 	{
-		if (WEXITSTATUS(status) != 0)
+		if (WEXITSTATUS(status) != 0 && index == 3)
 			exit(WEXITSTATUS(status));
 	}
 	if (WIFSIGNALED(status))
