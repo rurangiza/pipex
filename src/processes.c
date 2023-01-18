@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 20:01:10 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/18 10:58:46 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/18 11:10:45 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	first_child(t_data *data, int *pipe_ends)
 	close(pipe_ends[P_READ]);
 	infile_fd = open(data->arg_list[1], O_RDONLY);
 	if (infile_fd == -1)
-		exit_msg(EXIT_FAILURE, "infile");
+		exit_nofile_msg(data->arg_list[1]);
 	if (dup2(infile_fd, STDIN_FILENO) < 0)
 		exit_msg(0, "dup()");
 	close(infile_fd);
@@ -44,12 +44,12 @@ void	second_child(t_data *data, int *pipe_ends)
 	dup2(pipe_ends[P_READ], STDIN_FILENO);
 	outfile_fd = open(data->arg_list[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (outfile_fd == -1)
-		exit_msg(1, "outfile");
+		exit_nofile_msg(data->arg_list[1]);
 	dup2(outfile_fd, STDOUT_FILENO);
 	close(outfile_fd);
 	init_cmd(data->envp, data->arg_list[3], &cmd);
 	if (cmd.path == NULL)
-		exit_msg(1, "shell cmd2");
+		exit_msg(0, "shell cmd");
 	err_code = execve(cmd.path, cmd.args, NULL);
 	if (err_code == -1)
 		exit_msg(0, "execve");
