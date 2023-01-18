@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:21:06 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/16 15:46:36 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/18 12:58:11 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,46 @@ int	main(int arg_count, char **arg_list, char **envp)
 
 void	ft_pipex(t_data *data)
 {
-	pid_t	pid[2];
+	pid_t	pid;
 	int		pipe_ends[2];
+	int		index;
 
-	if (pipe(pipe_ends) == -1)
-		exit_msg(0, "pipe");
-	pid[0] = fork();
-	if (pid[0] == -1)
-		exit_msg(0, "fork");
-	else if (pid[0] == 0)
-		first_child(data, pipe_ends);
-	pid[1] = fork();
-	if (pid[1] == -1)
-		exit_msg(0, "2nd fork");
-	else if (pid[1] == 0)
-		second_child(data, pipe_ends);
-	parent_process(pid, pipe_ends);
+	index = 2;
+	while (index <= data->arg_count - 2)
+	{
+		if (pipe(pipe_ends) == -1)
+			exit_msg();
+		pid = fork();
+		if (pid == -1)
+			exit_msg();
+		else if (pid == 0)
+		{
+			if (index == 2)
+				first_child(data, pipe_ends);
+			else
+				last_child(data);
+		}
+		parent_process(pid, pipe_ends, index, data->arg_count);
+		index++;
+	}
 }
+
+// void	ft_pipex(t_data *data)
+// {
+// 	pid_t	pid[2];
+// 	int		pipe_ends[2];
+
+// 	if (pipe(pipe_ends) == -1)
+// 		exit_msg(0, "pipe");
+// 	pid[0] = fork();
+// 	if (pid[0] == -1)
+// 		exit_msg(0, "fork");
+// 	else if (pid[0] == 0)
+// 		first_child(data, pipe_ends);
+// 	pid[1] = fork();
+// 	if (pid[1] == -1)
+// 		exit_msg(0, "2nd fork");
+// 	else if (pid[1] == 0)
+// 		second_child(data, pipe_ends);
+// 	parent_process(pid, pipe_ends);
+// }
