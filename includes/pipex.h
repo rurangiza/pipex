@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:28:04 by arurangi          #+#    #+#             */
-/*   Updated: 2023/01/18 11:06:16 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/18 11:25:17 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ char	*cut_first_word(char *str);
 /* ~~~~~~~~ ERROR HANDLING ~~~~~~ */
 void	exit_msg(int error_code, char *title);
 void	exit_nofile_msg(char *filename);
+void	exit_wrongcmd_msg(char *cmd);
 
 #endif

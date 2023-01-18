@@ -6,7 +6,7 @@
 /*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 09:51:01 by Arsene            #+#    #+#             */
-/*   Updated: 2023/01/18 11:15:30 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/01/18 11:28:55 by arurangi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	error_msg(int return_code, char *message, ...)
 	{
 		if (message[index] == '%')
 		{
-			if (message[index + 1] == 's')
+			if (message[index + 1] && message[index + 1]== 's')
 				ft_putstr_fd(va_arg(args, char *), 2);
-			else if (message[index + 1] == 'd')
-				ft_putnbr(va_arg(args, int));
+			else if (message[index + 1] && message[index + 1] == 'd')
+				ft_putnbr_fd(va_arg(args, int), 2);
 			index++;
 		}
 		else
